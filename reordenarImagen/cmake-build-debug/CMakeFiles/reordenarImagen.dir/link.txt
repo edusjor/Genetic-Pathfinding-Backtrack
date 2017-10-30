@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/reordenarImagen.dir/main.cpp.o  -o reordenarImagen 

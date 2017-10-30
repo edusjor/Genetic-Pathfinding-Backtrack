@@ -8,86 +8,82 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
+				<Option working_dir="C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="imageSlicing">
-				<Option output="/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/imageSlicing" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
+				<Option output="C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/imageSlicing.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/6"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
-					<Add directory="/usr/include/c++/6/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++/backward"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include-fixed"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 imageSlicing"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 imageSlicing"/>
+					<CompileFile command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="imageSlicing/fast">
-				<Option output="/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/imageSlicing" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
+				<Option output="C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/imageSlicing.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/6"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
-					<Add directory="/usr/include/c++/6/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++/backward"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/include-fixed"/>
+					<Add directory="c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/4.8.1/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 imageSlicing/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 imageSlicing/fast"/>
+					<CompileFile command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/Mingw64/bin/mingw32-make.exe -f &quot;C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/main.cpp">
+		<Unit filename="C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/main.cpp">
 			<Option target="imageSlicing"/>
 		</Unit>
-		<Unit filename="/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/CMakeLists.txt">
+		<Unit filename="C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

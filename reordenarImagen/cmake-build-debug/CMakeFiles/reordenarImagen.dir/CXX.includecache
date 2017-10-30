@@ -6,13 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/main.cpp
+/home/edulubu/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagen/main.cpp
 opencv2/photo.hpp
 -
 opencv2/highgui.hpp
 -
 iostream
--
-bits/valarray_before.h
 -
 

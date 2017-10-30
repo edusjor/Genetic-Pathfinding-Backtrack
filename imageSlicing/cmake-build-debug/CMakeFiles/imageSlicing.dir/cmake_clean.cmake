@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/imageSlicing.dir/main.cpp.o"
+  "CMakeFiles/imageSlicing.dir/main.cpp.obj"
   "imageSlicing.pdb"
-  "imageSlicing"
+  "imageSlicing.exe"
+  "imageSlicing.exe.manifest"
+  "libimageSlicing.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

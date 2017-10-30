@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/main.cpp" "/home/edulubu/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/CMakeFiles/imageSlicing.dir/main.cpp.o"
+  "C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/main.cpp" "C:/Users/edojs/Dropbox/Tec/Datos2/imageSlicing/cmake-build-debug/CMakeFiles/imageSlicing.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
