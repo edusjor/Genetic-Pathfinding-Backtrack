@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/edulubu/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagen/main.cpp" "/home/edulubu/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagen/cmake-build-debug/CMakeFiles/reordenarImagen.dir/main.cpp.o"
+  "/home/eduelem/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagen/main.cpp" "/home/eduelem/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagen/cmake-build-debug/CMakeFiles/reordenarImagen.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

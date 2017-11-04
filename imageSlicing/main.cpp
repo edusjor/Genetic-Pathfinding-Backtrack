@@ -15,7 +15,7 @@ using namespace std;
 int main (){
     Mat imagen=imread("img1.png",1);            //carga la imagen
 
-    int cantidad=25;                            //cantidad de partes en cortar siempre debe ser un numero con raiz
+    int cantidad=16;                            //cantidad de partes en cortar siempre debe ser un numero con raiz
 
     int img_Width = imagen.size().width;        //1000   ejm
     int img_Height = imagen.size().height;      //1000   ejm
