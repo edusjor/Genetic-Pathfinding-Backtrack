@@ -26,7 +26,7 @@ int calcularFitness(int individuo[], int modelo[]){
 //cantidadGenes=>cantidad de trozos de imagen   cantIndividuosIni=> cantidad de individuos en la poblacion inicial sin seleccionar mejores
 //genesPoblacion=> matriz con todos los individuos con parametros IDs          imgsPoblacion=> Matriz con todos los individuos con parametros las imagenes
 //genesIndividuoModelo=> array con IDs del individuo al cual se debe llegar a ser igual
-void seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genesPoblacion[][16], Mat imgsPoblacion[][16], int genesIndividuoModelo[]) {
+int seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genesPoblacion[][16], Mat imgsPoblacion[][16], int genesIndividuoModelo[]) {
     int arrfitneses[cantIndividuosIni];
 
     int contador = 0;
@@ -52,6 +52,7 @@ void seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int gene
     if (mayorFitness == 16) { //verifica si ya se alcanzo el maximo fitness
         //terminar aqui
         cout << "Se alcanzo el maximo fitness!, logrado" << endl;
+        return 1;
     }
 
 
@@ -79,7 +80,6 @@ void seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int gene
             if (arrfitnessdeMayores[i]==arrfitneses[j]){
                 arrIndicesDeMayores[i]=j;
             }
-
         }
     }
 
@@ -100,14 +100,40 @@ void seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int gene
 
     ////////////////////////////////////////////////
     //reproducir aqui
+    srand(time(NULL));
+
+    int arrMejorToReproducir[16];
+    Mat arrIMGMejorToReproducir[16];
+
+    //selecciona de la matriz dos individuos aleatorios y los guarda en un nuevo array mezclandolos mita y mitad de manera: un gen
+    //del individuo 1 y el siguiente gen del individuo 2 y asi sucesivamente
+    for(int i=0; i<16; i++){
+        int aleatorio1=rand()%8;
+        int aleatorio2=rand()%8;
+        for(int j=0; j<16; j++){
+            if(j%2 ==0) {
+                arrMejorToReproducir[j] = arrMatrMejores[aleatorio1][j];
+                arrMejorToReproducir[j] = arrMatrMejores[aleatorio1][j];
+            }else
+            {
+                arrMejorToReproducir[j] = arrMatrMejores[aleatorio2][j];
+                arrMejorToReproducir[j] = arrMatrMejores[aleatorio2][j];
+            }
+
+
+        }
+    }
 
 
     //mutar aqui
 
 
-
+    //mostrar generacion
     //recursividad
 
+    cout<<"fin aqui"<<endl;
+
+    return 0;
 
 }
 
@@ -158,10 +184,10 @@ void crearPoblacion(int cantidadGenes,int cantIndividuosIni, int genesIndividuo1
     }
 
 
-
+    cout<<"crear poblacion"<<endl;
     seleccionar_y_reproducir(cantidadGenes,cantIndividuosIni,genesPoblacion,imgsPoblacion,genesIndividuoModelo);
 
-}
+}//end seleccionar_y_reproducir(parametros 5)
 
 
 
@@ -184,9 +210,10 @@ void genetic_Algorithm(Mat array_De_imgOriginal[],int array_de_IDs_imgOriginal[]
 
 }//end genetic_Algorithm(parameters 4)
 
-
+*/
 //compara el color pixel por pixel de 2 imagenes
 int compararPixels(Mat imagenTrozo, Mat imgReferencia ){
+    cout<<"comparar 1"<<endl;
     for (int y = 0; y < imgReferencia.rows; y++) {
         for (int x = 0; x < imgReferencia.cols; x++) {
 
@@ -199,12 +226,16 @@ int compararPixels(Mat imagenTrozo, Mat imgReferencia ){
                 return false;
         }
     }
+
+
     return true;
 }//end compararPixels
 
 //busca el indice en donde se encuentra la imagen que busca
 int buscarIndices(Mat arrayTrozos[], Mat imgReferencia){
     int cant_trozos;//hacer el lenght
+
+
     for (int i=0; i<cant_trozos; i++) {
         Mat imagenTrozo = arrayTrozos[i];
 
@@ -269,7 +300,7 @@ void programa(){
     int array_de_IDs_imgOriginal[tamano];
     int array_de_IDs_imgDesord[tamano];
 
-
+    cout<<"comparar 1"<<endl;
     for(int i=0; i<tamano; i++){ //agrega los IDs
         array_de_IDs_imgOriginal[i]=i;
 
@@ -284,10 +315,12 @@ void programa(){
         }
 
     }
-
+    cout<<"comparar 2"<<endl;
     //el array IDs imgDesord debe quedar igual a la otra
 
-    genetic_Algorithm(array_De_imgOriginal,array_de_IDs_imgOriginal,  array_De_imgDesord,array_de_IDs_imgDesord);
+    crearPoblacion(16,16,array_de_IDs_imgDesord,array_De_imgDesord, array_de_IDs_imgOriginal, array_De_imgOriginal);
+
+
 
 
 }//end programa()
@@ -302,4 +335,3 @@ int main() {
 
 
 
-*/
