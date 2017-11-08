@@ -157,30 +157,38 @@ int seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genes
     //reproducir aqui
     srand(time(NULL));
 
-    int arrMejorToReproducir[cantidadGenes];
+    int arrMejorToReproducir[cantidadGenes];    //
     Mat arrIMGMejorToReproducir[cantidadGenes];
 
-    Mat matGeneracion[16][16];   //la nueva poblacion/generacion
+    int matGeneraciongenes[16][16]; //la nueva poblacion/generacion  en genes
+    Mat matGeneracion[16][16];   //la nueva poblacion/generacion  en imagenes
 
     for (int indiv=0; indiv<16; indiv++){ 
 
         //selecciona de la matriz dos individuos aleatorios y los guarda en un nuevo array mezclandolos mita y mitad de manera: un gen
         //del individuo 1 y el siguiente gen del individuo 2 y asi sucesivamente
         for(int i=0; i<cantidadGenes; i++){
+
             int aleatorio1=rand()%mejores;
             int aleatorio2=rand()%mejores;
+
+            //segun los 2 numeros aleatorios selecciona dos individuos en el indice de esos nums aleatorios
+            //y hace una copia de los genes de esos dos individuos aleatorio al aray arrMejorToReproducir quedando estos dos individuos mezclados
             for(int j=0; j<cantidadGenes; j++){
                 if(j%2 ==0) {
                     arrMejorToReproducir[j] = arrMatrMejores[aleatorio1][j];
                     arrIMGMejorToReproducir[j] = arrIMGMatrMejores[aleatorio1][j];
 
                     matGeneracion[indiv][j]=arrIMGMatrMejores[aleatorio1][j];
+                    matGeneraciongenes[indiv][j] = arrMatrMejores[aleatorio1][j];
+
                 }else
                 {
                     arrMejorToReproducir[j] = arrMatrMejores[aleatorio2][j];
                     arrIMGMejorToReproducir[j] = arrIMGMatrMejores[aleatorio2][j];
 
                     matGeneracion[indiv][j]=arrIMGMatrMejores[aleatorio2][j];
+                    matGeneraciongenes[indiv][j] = arrMatrMejores[aleatorio2][j];
                 }
 
 
@@ -280,7 +288,7 @@ int seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genes
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //recursividad
 
-    seleccionar_y_reproducir(cantidadGenes, cantIndividuosIni, genesPoblacion,imgsPoblacion, genesIndividuoModelo, numGeneracion+1);
+    seleccionar_y_reproducir(cantidadGenes, cantIndividuosIni, matGeneraciongenes,matGeneracion, genesIndividuoModelo, numGeneracion+1);
 
 
         cout<<"fin aqui"<<endl;
