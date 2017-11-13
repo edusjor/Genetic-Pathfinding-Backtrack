@@ -12,14 +12,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62746575-9d2b-40be-9faa-aafa6e5f5241" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1 Generacion.png" afterPath="$PROJECT_DIR$/1 Generacion.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2 Generacion.png" afterPath="$PROJECT_DIR$/2 Generacion.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3 Generacion.png" afterPath="$PROJECT_DIR$/3 Generacion.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/4 Generacion.png" afterPath="$PROJECT_DIR$/4 Generacion.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/5 Generacion.png" afterPath="$PROJECT_DIR$/5 Generacion.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/6 Generacion.png" afterPath="$PROJECT_DIR$/6 Generacion.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/7 Generacion.png" afterPath="$PROJECT_DIR$/7 Generacion.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/11 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/12 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/13 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/14 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/15 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/16 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/2 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/3 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/4 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/5 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/6 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/7 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/8 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/9 Generacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/run" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/run23" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/run5" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -45,8 +56,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="285" column="0" lean-forward="true" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -151,11 +162,12 @@
       <workItem from="1509921935335" duration="556000" />
       <workItem from="1510148472132" duration="2875000" />
       <workItem from="1510155353222" duration="1510000" />
+      <workItem from="1510258713022" duration="5089000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52260000" />
+    <option name="totallyTimeSpent" value="57349000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="778" y="48" width="1920" height="1050" extended-state="6" />
@@ -193,6 +205,24 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4275">
+          <caret line="285" column="0" lean-forward="true" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -401,8 +431,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="285" column="0" lean-forward="true" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>

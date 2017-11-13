@@ -1,0 +1,3 @@
+/home/eduelem/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagenVersion2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/eduelem/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagenVersion2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/eduelem/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagenVersion2/cmake-build-debug/CMakeFiles/reordenarImagenVersion2.dir

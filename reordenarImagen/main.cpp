@@ -67,7 +67,7 @@ int seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genes
     int arrfitneses[cantIndividuosIni];
 
     int contador = 0;
-    int mejores = 9; //numero de mayor cantidad de individuos que se seleccionaran, solo los mejores
+    int mejores = 3; //numero de mayor cantidad de individuos que se seleccionaran, solo los mejores
     int mayorFitness; //el fitness mayor al cual se llego
 
 
@@ -89,17 +89,25 @@ int seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genes
         }
     }
     cout<<"mayor fitness: "<<mayorFitness<<endl;
-    if (mayorFitness == cantidadGenes) { //verifica si ya se alcanzo el maximo fitness (cantidad de genes de un solo individuo iguales a los del original)
+    if (mayorFitness >= 6) { //verifica si ya se alcanzo el maximo fitness (cantidad de genes de un solo individuo iguales a los del original)
         //terminar aqui
-        cout << "Se alcanzo el maximo fitness!. Logrado" << endl;
+        cout << "Se alcanzo el maximo fitness elegido: "<<mayorFitness << endl;
+
         return 1;
     }
-
+/*
     if (mayorFitness == 10) { //verifica si ya se alcanzo el maximo fitness que uno decea
         //terminar aqui
         cout << "Se alcanzo el maximo fitness establecido manualmente!. Logrado" << endl;
         return 1;
-    }
+    }*/
+
+
+
+
+
+
+
 
 
 
@@ -165,17 +173,26 @@ int seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genes
 
     for (int indiv=0; indiv<16; indiv++){ 
 
-        //selecciona de la matriz dos individuos aleatorios y los guarda en un nuevo array mezclandolos mita y mitad de manera: un gen
-        //del individuo 1 y el siguiente gen del individuo 2 y asi sucesivamente
+        //selecciona de la matriz dos individuos aleatorios y los guarda en un nuevo array mezclandolos mita y mitad de manera: primera mitad
+        //de genes en uno con la segunda mitad del otro
         for(int i=0; i<cantidadGenes; i++){
 
-            int aleatorio1=rand()%mejores;
-            int aleatorio2=rand()%mejores;
+
+
+            int pivote=rand()%16; //pivote que divide a los padres. A la izquierda el padre 1 a la derecha el padre 2, izquierda y derecha se unen y el resultado es el hijo
+
+            int aleatorio1=rand()%mejores;  //indice aleatorio del padre 1
+            int aleatorio2=rand()%mejores;  //indice aleatorio del padre 2
+
+
 
             //segun los 2 numeros aleatorios selecciona dos individuos en el indice de esos nums aleatorios
             //y hace una copia de los genes de esos dos individuos aleatorio al aray arrMejorToReproducir quedando estos dos individuos mezclados
+
+
+
             for(int j=0; j<cantidadGenes; j++){
-                if(j%2 ==0) {
+                if(j < pivote) {
                     arrMejorToReproducir[j] = arrMatrMejores[aleatorio1][j];
                     arrIMGMejorToReproducir[j] = arrIMGMatrMejores[aleatorio1][j];
 
@@ -247,7 +264,7 @@ int seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genes
 
 
 
-
+/*
     //hagarra todos los individuos/poblacion/nuevaGeneracion y los une en una sola imagen
     //para mostrar la nueva generacion en un mismo .png
         Mat array_filas[4];        //array con todas las filas
@@ -280,7 +297,7 @@ int seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genes
 
     imwrite( numeroDeGeneracion+" Generacion.png",  Columnas);   //guarda la parte que corto
 
-
+*/
 
 
 
@@ -305,7 +322,9 @@ int seleccionar_y_reproducir(int cantidadGenes, int cantIndividuosIni, int genes
 
 
 
+void mostrarGeneracion(){
 
+}
 
 
 

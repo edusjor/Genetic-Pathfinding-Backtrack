@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/eduelem/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagenVersion2/main.cpp
+opencv2/photo.hpp
+-
+opencv2/highgui.hpp
+-
+iostream
+-
+string
+-
+stdio.h
+-
+stdlib.h
+-
+time.h
+-
+
