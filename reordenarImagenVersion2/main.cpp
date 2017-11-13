@@ -3,29 +3,23 @@
 #include <opencv2/photo.hpp>
 #include <opencv2/highgui.hpp>
 #include <iostream>
-#include <string>
-#include <stdio.h>      /* printf, NULL */
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
 
 
 using namespace cv;
-
-
 using namespace std;
 
 
 ////////////////////////////////////////////////////////////////////////
-int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndividuos, int numGeneracion, int poblacionMatriz[][16],int individuoModeloArray[]);
+//se hace la reproduccion y la mutacion
+int reproducir(int cantidadGenes,
+               int cantidadIndividuos,
+               int cantidadMejoresIndividuos,
+               int numGeneracion,
+               int poblacionMatriz[][16],
+               int individuoModeloArray[]);
 
 //recibe un array con un individuo y el individuo modelo para calcular y retornar su fitness
 int calcularFitness(int individuo[], int modelo[],int cantidadGenes);
-
-//convierte enteros a string
-string to_string(int i);
-
-int generarRandom(int rango);
-
 
 ///////////////////////////////////////////////////////////////////////
 int main() {
@@ -60,43 +54,19 @@ int main() {
     reproducir(cantidadGenes, cantidadIndividuos, cantidadMejoresIndividuos, numGeneracion, poblacionMatriz,individuoModeloArray);
 
 
-
-
-/*
-
-    int porOrdenar[16]={6,2,7,5,9,3,1,8,11,4,15,10,12,0,14,13};
-
-    int Temp;
-    for (int i = 0; i < cantidadGenes; i++){
-        for (int j = 0; j < cantidadGenes - 1; j++){
-            if (porOrdenar[j] < porOrdenar[j + 1]) {// cambia "<" a ">" para cambiar la manera de ordenar
-                Temp = porOrdenar[j];
-                porOrdenar[j] = porOrdenar[j + 1];
-                porOrdenar[j + 1] = Temp;
-            }
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-    cout<<"\n\nfitnessArray Ordenado: ";
-    for (int i=0; i<cantidadGenes; i++){
-        cout<<porOrdenar[i]<<",";
-    }*/
     return 0;
 }
 
 
-//cantidad de genes quetiene cada individuo, cantidad de intividuos por pobacion, cantidad de los mejores individuos a elegir,
+//cantidad de genes que tiene cada individuo, cantidad de intividuos por poblacion, cantidad de los mejores individuos a elegir,
 //matriz de la poblacion de individuos, array de individuo modelo, numero de generacion para esta poblacion
-int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndividuos, int numGeneracion, int poblacionMatriz[][16],int individuoModeloArray[]){
+int reproducir(int cantidadGenes,
+               int cantidadIndividuos,
+               int cantidadMejoresIndividuos,
+               int numGeneracion,
+               int poblacionMatriz[][16],
+               int individuoModeloArray[]){
+
     cout<<"Reproduciendo"<<endl;
 
     //array con los fitnes de cada individuo de la poblacion en el mismo indice respectivo
@@ -121,9 +91,14 @@ int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndi
     //matriz con cada nuevo hijo
     int generacionMatriz[16][16];
 
-
+    //Se guarda aqui el indice con mayor indice
     int indiceConMayorFitness=0;
+
+    //Se guarda el numero mayor que sera el fitness mayor
     int mayorFitness=0;
+
+    //Probabilidad porcentual de cada individuo mutar
+    int probabilidadDeMutar=70;
 
 
     //teniendo el array con los mejores individuos que pueden ser 3 empieza la fiesta. y se generan 16 hijos que sera la siguiente generacion
@@ -132,7 +107,6 @@ int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndi
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //busca el fitnes de todos los individuos y los guarda en un array "fitnessArray"
-
     for (int i=0; i<cantidadIndividuos; i++){
         int calculoDeFitness= calcularFitness(poblacionMatriz[i],individuoModeloArray,cantidadGenes);
         fitnessArray[i]= calculoDeFitness;
@@ -140,7 +114,7 @@ int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndi
             indiceConMayorFitness=i;
         }
         //prueba
-        cout<<"fitness: "<< calculoDeFitness<<endl;
+        //cout<<"fitness: "<< calculoDeFitness<<endl;
     }
 
 
@@ -160,25 +134,24 @@ int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndi
             }
         }
     }
+
     //define el mayor fitness
+    //muestra el individuo con mayor fitness
     mayorFitness=fitnessArrayOrdenados[0];
     cout<<"Fitness mayor: "<<mayorFitness<<endl;
     if(mayorFitness==16){
         cout<<"Se alcanzo el maximo fitness en generacion "<<numGeneracion-1<<endl;
-
-
         cout<<"individuo con mayor fitnes: "<<endl;
         for (int k=0; k<16; k++) {
             cout<<","<<poblacionMatriz[indiceConMayorFitness][k];
-
         }
-
         return 1;
     }
 
 
 
     //prueba del ordenamiento
+    //muestra el array del fitnessArray ordenado de mayor a menor
     cout<<"fitnessArray Ordenado: ";
     for (int i=0; i<cantidadGenes; i++){
         cout<<fitnessArrayOrdenados[i]<<",";
@@ -199,13 +172,13 @@ int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndi
             if (fitnessArrayMejores[i]==fitnessArray[j]){
                 if (indiceAnterior<j) {
                     indicesArrayMejoresFitness[i] = j;
-                    indiceAnterior=j;
 
                     break;
                 }
             }
         }indiceAnterior=-1;
     }
+
     //prueba
     for (int i=0; i<cantidadMejoresIndividuos; i++){
         cout<<"EL indice de: "<< fitnessArrayMejores[i]<<" es: "<<indicesArrayMejoresFitness[i]<< endl;
@@ -220,21 +193,8 @@ int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndi
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //crear hijo
-
-    /*//mostrar generacion vieja
-    cout<<endl;cout<<endl;cout<<endl;
-    cout<<"generacion vieja:"<<endl;
-    for (int i=0; i<16; i++){
-        cout<<"[";
-        for(int j=0; j<16; j++){
-            cout<<poblacionMatriz[i][j]<<",";
-        }
-        cout<<"]\n";
-    }cout<<endl;cout<<endl;cout<<endl;
-
-*/
 
     for(int i=0; i<16; i++){  //16 veces
 
@@ -245,8 +205,6 @@ int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndi
         //verificar que el padre 2 no sea igual que el 1***************
 
         if (padre_2!=padre_1) {
-
-
             for (int j = 0; j <= pivote_1; j++) {
 
                 individuoHijoArrayTemporal[j] = individuosMejoresArray[padre_1][j];
@@ -266,37 +224,41 @@ int reproducir(int cantidadGenes, int cantidadIndividuos,int cantidadMejoresIndi
             i--;
         }
 
-
-
-
-
-
-
-
     }//end for
 
-    //prueba, muestra la nueva generacion
-    cout<<"Nueva generacion. Generacion: "<<numGeneracion<<endl;
-    for(int r=0; r<16; r++){
-        cout<<endl;
-
-        for(int s=0; s<16;s++){
-            cout<<","<<generacionMatriz[r][s];
-        }
-    }
 
 
     //mutar
+    //para cada individuo de la poblacion crea un numero random <100. Si ese numero es <= la probabilidad de mutar entonces muta
+    //selecciona un punto al azar
     for(int x=0; x<16; x++){
-        int punto=rand()%16;
-        int nuevoPunto=rand()%16;
+        int mutar=rand()%100;
+        if (mutar<=probabilidadDeMutar) {
 
-        while (nuevoPunto==generacionMatriz[x][punto]){
-            nuevoPunto=rand()%16;
+            int punto = rand() % 16;
+            int nuevoPunto = rand() % 16;
+
+            while (nuevoPunto == generacionMatriz[x][punto]) {
+                nuevoPunto = rand() % 16;
+            }
+            generacionMatriz[x][punto] = nuevoPunto;
         }
-        generacionMatriz[x][punto]=nuevoPunto;
 
     }
+
+
+
+
+    //prueba, muestra cada nueva generacion con su mutacion
+    cout<<"Nueva generacion. Generacion: "<<numGeneracion<<endl;
+    for(int r=0; r<16; r++){
+        cout<<endl;
+        for(int s=0; s<16;s++){
+            cout<<","<<generacionMatriz[r][s];
+        }
+    }cout<<endl;
+
+
 
 
 
