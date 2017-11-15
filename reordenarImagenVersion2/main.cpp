@@ -12,7 +12,14 @@ using namespace std;
 //Para correrlo:    ./run
 
 
-////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //da inicio al programa. Es llamado por el main
 void programa();
 
@@ -30,34 +37,45 @@ int reproducir(int cantidadGenes,
                int individuoModeloArray[],
                Mat imgsIdivMod[]);
 
-//recibe un array con un individuo y el individuo modelo para calcular y retornar su fitness
-int calcularFitness(int individuo[], int modelo[],int cantidadGenes);
-
-
 //compara el color pixel por pixel de 2 imagenes
 int compararPixels(Mat imagenTrozo, Mat imgReferencia );
 
 //busca el indice en donde se encuentra la imagen que busca
 int buscarIndices(Mat arrayTrozos[], Mat imgReferencia);
 
+//convertir eteros a string
 std::string to_string(int i);
-
-//busca la imagen de acuerdo al gen
-Mat buscarimagen(int gen, int poblacionMatriz[][16], Mat poblacionMatrizIMGS[][16]);
 
 //recibe un array con trozos de una imagen y los une para formar una sola imagen
 void crearImagen(Mat array_De_Trozos[], string, string);
 
-
-
-
-//inicia el programa
-void programa();
-
 //verifica orden de un array
 int verificarOrden(int array[]);
 
-///////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main() {
     srand(time(NULL));
     std::cout << "Hello, World!" << std::endl;
@@ -67,13 +85,19 @@ int main() {
 }
 
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void programa() {
     int tamano = 16;
-    Mat imgOriginal = imread("img1.png", 1);            //carga la imagen
+    Mat imgOriginal = imread("img1.png", 1);            //carga la imagen original
     Mat imgTrozos = imread("sliced.png", 1);            //carga la imagen
-
 
     /////////////////////////////////////////////////////////
     //////////////imagen ////////////////////////////
@@ -133,12 +157,8 @@ void programa() {
         int indice = buscarIndices(array_De_imgDesord, array_De_imgOriginal[i]);
         if (indice == -1)   //si el indice da -1 (a veces sucede extranamente) entonces que se vuelva a buscar ese indice  a huevo
             i--;
-        cout << "Indice: " << indice << endl;
         array_de_IDs_imgDesord[indice] = i;
     }
-    cout << endl << endl << endl << endl;
-
-
 
 
 
@@ -163,16 +183,13 @@ void programa() {
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //crea la poblacion inicial en una matriz. Hagarra el individuo modelo y hace 16 individuos a partir de ese.
 //desordenando aleatoriamente el array
@@ -216,20 +233,13 @@ void crearPoblacion(int cantidadGenes,int cantIndividuosIni, int genesIndividuo1
         cout<<endl;
     }
 
-
-
     int cantidadIndividuos=16;
     int cantidadMejoresIndividuos=3;
     int numGeneracion=0;
     reproducir(cantidadGenes, cantidadIndividuos, cantidadMejoresIndividuos, numGeneracion, genesNewPoblacion,imgsNewPoblacion,genesIndividuoModelo,imgsIdivMod);
 
 
-}//end crearPoblacion(parametros 6)
-
-
-
-
-
+}//end crearPoblacion
 
 
 
@@ -246,6 +256,12 @@ void crearPoblacion(int cantidadGenes,int cantIndividuosIni, int genesIndividuo1
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //cantidad de genes que tiene cada individuo, cantidad de intividuos por poblacion, cantidad de los mejores individuos a elegir,
 //matriz de la poblacion de individuos, array de individuo modelo, numero de generacion para esta poblacion
 int reproducir(int cantidadGenes,
@@ -260,18 +276,18 @@ int reproducir(int cantidadGenes,
 
     int anteriorFitness=0;
     while (true) {
-        int arraydeFitness[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int arraydeFitness[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; //para guardar el fitnes de cada individuo
 
         //verifica los fitnes de cada individuo y los guarda en un array
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
-                if (compararPixels(poblacionMatrizIMGS[i][j], imgsIdivMod[j]) == true) {
+                if (compararPixels(poblacionMatrizIMGS[i][j], imgsIdivMod[j]) != 0) {
                     arraydeFitness[i] += 1;
                 }
             }
         }
 
-        while (verificarOrden(arraydeFitness) == false) {
+        while (verificarOrden(arraydeFitness) == 0) { //mientras el array no este ordenado
 
 
             for (int j = 0; j < 15; j++) {
@@ -298,14 +314,14 @@ int reproducir(int cantidadGenes,
             }
         }
 
-        cout<<"Array de fitness ordenado, generacion "<<numGeneracion<<endl;
+        cout<<"Array de fitness ordenado, generacion: "<<numGeneracion<<endl;
         for (int p = 0; p < 16; p++) {
             cout << arraydeFitness[p] << ",";
         }
 
         cout<<"  ";
 
-
+        //verifica cuando el maximo fitness sea 16
         if (arraydeFitness[0]==16){
             cout<<"alcanzo el maximo fitness en generacion: "<<numGeneracion<<endl;
             Mat imagen[16];
@@ -316,47 +332,49 @@ int reproducir(int cantidadGenes,
 
             return 1;
         }
+
         //si el fitness actual es mayor que el anterior crea un nuevo .png de una imagen del mejor fitness
         if (arraydeFitness[0]>anteriorFitness){
 
-            cout<<"Aumento de fitness "<<endl;
+            cout<<"<Aumento de fitness> ";
             Mat imagen[16];
             for (int i=0; i<16; i++){
                 imagen[i]=poblacionMatrizIMGS[0][i];
             }
             crearImagen(imagen, to_string(numGeneracion), "fit_"+to_string(anteriorFitness));
             anteriorFitness++;
-
-
         }
 
 
 
-        //reproducir
-
+        //REPRODUCCION
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         //crear hijo
         Mat individuoHijoIMGArrayTemporal[16];
         Mat generacionMatrizIMGs[16][16];
 
         cantidadMejoresIndividuos=3;
-        for (int i = 0; i < 16; i++) {  //16 veces
+        for (int i = 0; i < 16; i++) {  //16 veces porque la generacion queda de 16 individuos
 
             int pivote_1 = rand() % cantidadGenes;//pivote indice
-            int padre_1 = rand() % cantidadMejoresIndividuos;
+
+            int padre_1 = rand() % cantidadMejoresIndividuos; //indice de la posicion donde estara el padre1
             int padre_2 = rand() % cantidadMejoresIndividuos;
 
             //verifica que el padre 2 no sea igual que el 1
             if (padre_2 != padre_1) {
+                //copia la primera mitad del array de genes IMGS del padre1 a un array temporal
                 for (int j = 0; j <= pivote_1; j++) {
                     individuoHijoIMGArrayTemporal[j] = poblacionMatrizIMGS[padre_1][j];
                 }
-                for (int j = pivote_1 + 1; j < cantidadGenes; j++) {
+
+                //copia la segunda mitad del array de genes IMGS del padre2 a lo que resta del array temporal
+                for (int j = pivote_1+1; j < cantidadGenes; j++) {
                     individuoHijoIMGArrayTemporal[j] = poblacionMatrizIMGS[padre_2][j];
                 }
 
+                //copia el array temporal que es el nuevo individuo hijo en la matriz generacion
                 for (int g = 0; g < 16; g++) {
-                    //cout<<","<<individuoHijoArrayTemporal[g];
                     generacionMatrizIMGs[i][g] = individuoHijoIMGArrayTemporal[g];
                 }
 
@@ -366,26 +384,24 @@ int reproducir(int cantidadGenes,
         }//end for
 
 
-        //mutar
+        //MUTACION
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         int probabilidadDeMutar=90;
-        int cont=0;
+        int cont=0; //bandera para que se detenga, solo hace la mutacion de la poblacion una vez. While no necesario, pereza quitarlo
         while(cont<1) {
             for (int x = 0; x < 16; x++) {
                 int mutar = rand() % 100;
 
-                if (mutar <= probabilidadDeMutar) {
+                if (mutar <= probabilidadDeMutar) {  //si el numero mutar aleatorio es mayor que el porcentaje de mutar entoces no muta al individuo de indice x
 
                     int puntoGen = rand() % 16;
                     int puntoPoblacion = rand() % 16;
 
                     Mat genACopiar = imgsIdivMod[rand() % 16]; //poblacionMatrizIMGS[rand() % 16][rand() % 16];//imgsIdivMod[rand() % 16];
 
-                    while (compararPixels(genACopiar, generacionMatrizIMGs[x][puntoGen]) == true) {
-
+                    while (compararPixels(genACopiar, generacionMatrizIMGs[x][puntoGen]) !=0) { //verifica que el punto seleccionado para cambiar no contenga el mismo valor que el que va a insertar
                         puntoGen = rand() % 16;
-
-                        genACopiar = imgsIdivMod[rand() % 16]; //poblacionMatrizIMGS[rand() % 16][rand() %
-                                                                     // 16];            //imgsIdivMod[rand() % 16];
+                        genACopiar = imgsIdivMod[rand() % 16]; //poblacionMatrizIMGS[rand() % 16][rand() % 16];            //imgsIdivMod[rand() % 16];
                     }//end while
 
                     generacionMatrizIMGs[x][puntoGen] = genACopiar;
@@ -395,36 +411,50 @@ int reproducir(int cantidadGenes,
         }//end while
         numGeneracion++;
 
-        //prueba
+        //la nueva generacion va a ser igual que la posterior poblacion, asi que se igualan las matrices
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 poblacionMatrizIMGS[i][j] = generacionMatrizIMGs[i][j];
             }
         }
-
-      /*  //prueba guardar img
-        Mat imagen[16];
-        for (int j=0; j<16; j++) {
-
-
-            for (int i = 0; i < 16; i++) {
-                imagen[i] = poblacionMatrizIMGS[j][i];
-            }
-            crearImagen(imagen,to_string(numGeneracion),to_string(j));
-        }*/
-
-
-    }
-
-
-
-
-
-        return 0;
+    }//end while true. e inicia nuevamente el proceso
 
 }//end reproducir
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//verifica si un array esta ordenado correctamente de mayor a menor
 int verificarOrden(int array[]){
     //int cont =0;
 
@@ -437,39 +467,23 @@ int verificarOrden(int array[]){
     }
     return true;
 
-}
+}//end verificarOrden
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
-Mat buscarimagen(int gen, int poblacionMatriz[][16], Mat poblacionMatrizIMGS[][16]){
-    for (int i=0; i<16; i++){
-        for (int j=0; j<16; j++){
-            if (poblacionMatriz[i][j]==gen){
-                return poblacionMatrizIMGS[i][j];
-            }
-        }
-    }
-}
-//recibe un array con trozos de una imagen y los une para formar una sola imagen
+//recibe un array con trozos de una imagen y los une para formar una sola imagen y la exporta como .png
 void crearImagen(Mat array_De_Trozos[], string strNumGeneracion, string strNumImagen){
     int cant_y =4;
     int cant_x=4;
 
     Mat array_filas[cant_y];        //array con todas las filas
-
 
     //concatena los trozos de cada fila y guarda cada fila en un array
     int cont1 = 0;
@@ -495,67 +509,17 @@ void crearImagen(Mat array_De_Trozos[], string strNumGeneracion, string strNumIm
     string nombre=strNumGeneracion+"_"+strNumImagen+".png";
     imwrite( "/home/eduelem/Dropbox/Genetic-Pathfinding-Backtrack/reordenarImagenVersion2/imgs/"+nombre,  Columnas);   //guarda la parte que corto
 
+}//end crearImagen
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
-    Mat fila1[4];
-    Mat fila2[4];
-    Mat fila3[4];
-    Mat fila4[4];*/
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //Mat Fila=array_De_Trozos[0];
-    //hconcat(Fila, array_De_Trozos[1]),Fila;
-    //hconcat(Fila, array_De_Trozos[2]);
-    //hconcat(Fila, array_De_Trozos[3]);
-/*
-    for(int i=1; i<4;i++) {
-        hconcat(Fila, array_De_Trozos[i], Fila);
-    }*/
-    //imwrite("imagen fila 1.png",Fila);
-/*
-    imwrite("imagen 1.png",array_De_Trozos[0]);
-    imwrite("imagen 2.png",array_De_Trozos[1]);
-    imwrite("imagen 3.png",array_De_Trozos[2]);
-    imwrite("imagen 4.png",array_De_Trozos[3]);
-*/
-
-    //waitKey();
-    //return Columnas;
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//recibe un array con un individuo y el individuo modelo para calcular y retornar su fitness
-int calcularFitness(int individuo[], int modelo[],int cantidadGenes){
-    int fitness=0;
-    for(int i=0; i<cantidadGenes; i++){
-        if (individuo[i]==modelo[i]){
-            fitness++;
-        }
-    }
-    return fitness;
-}//end calcularFitness
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //compara el color pixel por pixel de 2 imagenes
@@ -578,19 +542,13 @@ int compararPixels(Mat imagenTrozo, Mat imgReferencia ){
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //busca el indice en donde se encuentra la imagen que busca
 int buscarIndices(Mat arrayTrozos[], Mat imgReferencia){
@@ -607,14 +565,19 @@ int buscarIndices(Mat arrayTrozos[], Mat imgReferencia){
     return -1;
 }//end buscarIndices
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Para compilar:    g++ -Wall -o run  main.cpp `pkg-config --cflags --libs opencv`
-//Para correrlo:    ./run
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//convierte enteros a string
 std::string to_string(int i)
 {
     std::stringstream ss;
     ss << i;
     return ss.str();
-}
+}//end to_string
 
