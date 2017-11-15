@@ -11,7 +11,12 @@ using namespace std;
 
 
 
-
+//se le dice la cantidad de partes a las que se quiere dividir la imagen
+//el algoritmo saca el area que debe tener cada trozo segun el tamano de la imagen sin cortar
+//crea rectangulos(cuadrados) segun el area y corta
+//cada corte lo mete en un Mat, iterando con un for
+//desordena el Mat
+//vuelve a crear una imagen con esos trozos desordenados
 int main (){
     Mat imagen=imread("img1.png",1);            //carga la imagen
 
@@ -27,9 +32,6 @@ int main (){
     double trozo_Lado=pow(area_trozo,0.5);      //saca la raiz cuadrada para calcular el lado de cada trozo
 
     Mat array_De_Trozos[cantidad];              //crea un array para la cantidad de trozos que va a guardar
-
-
-
 
     int posi_X=0;                               //posicion x en la que se va a cortar los trozos
     int posi_Y=0;                               //posicion y en la que se va a cortar los trozos
@@ -79,14 +81,6 @@ int main (){
         array_De_Trozos[i]=desordenado[i];
     }
 
-
-
-
-
-
-
-
-
     Mat array_filas[cant_y];        //array con todas las filas
 
 
@@ -111,10 +105,10 @@ int main (){
     }
 
 
-    imwrite( "/home/eduelem/Dropbox/Genetic-Pathfinding-Backtrack/imageSlicing/imgs/sliced.png",  Columnas);   //guarda la parte que corto
+    imwrite( "sliced.png",  Columnas);   //guarda la parte que corto
 
 
-    waitKey();
+    //waitKey();
     return 1;
 
 }
