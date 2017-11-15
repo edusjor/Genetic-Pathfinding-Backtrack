@@ -111,7 +111,7 @@ int main (){
     }
 
 
-    imwrite( "sliced.png",  Columnas);   //guarda la parte que corto
+    imwrite( "/home/eduelem/Dropbox/Genetic-Pathfinding-Backtrack/imageSlicing/imgs/sliced.png",  Columnas);   //guarda la parte que corto
 
 
     waitKey();
