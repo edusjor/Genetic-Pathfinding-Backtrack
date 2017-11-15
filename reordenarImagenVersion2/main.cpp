@@ -182,10 +182,6 @@ void crearPoblacion(int cantidadGenes,int cantIndividuosIni, int genesIndividuo1
     cout<<"creando poblacion"<<endl;
     srand(time(NULL));
 
-    for (int i=0; i<16; i++){
-        cout<<genesIndividuo1[i]<<endl;
-    }
-
     int genesNewPoblacion[16][16];   //16 16    matriz en donde se guardara la nueva poblacion en numeros
     Mat imgsNewPoblacion[16][16];    //16 16    matriz en donde se guardara la nueva poblacion en imagenes, mismas posiciones que los numeros
 
@@ -225,7 +221,7 @@ void crearPoblacion(int cantidadGenes,int cantIndividuosIni, int genesIndividuo1
     int cantidadIndividuos=16;
     int cantidadMejoresIndividuos=3;
     int numGeneracion=0;
-    reproducir(cantidadGenes, cantidadIndividuos, cantidadMejoresIndividuos, numGeneracion+=1, genesNewPoblacion,imgsNewPoblacion,genesIndividuoModelo,imgsIdivMod);
+    reproducir(cantidadGenes, cantidadIndividuos, cantidadMejoresIndividuos, numGeneracion, genesNewPoblacion,imgsNewPoblacion,genesIndividuoModelo,imgsIdivMod);
 
 
 }//end crearPoblacion(parametros 6)
@@ -262,230 +258,169 @@ int reproducir(int cantidadGenes,
                 Mat imgsIdivMod[]){
 
 
-int anteriorFitness=0;
-while (true) {
-    int arraydeFitness[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int anteriorFitness=0;
+    while (true) {
+        int arraydeFitness[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    //verifica los fitnes de cada individuo y los guarda en un array
-    for (int i = 0; i < 16; i++) {
-        for (int j = 0; j < 16; j++) {
-            if (compararPixels(poblacionMatrizIMGS[i][j], imgsIdivMod[j]) == true) {
-                arraydeFitness[i] += 1;
+        //verifica los fitnes de cada individuo y los guarda en un array
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
+                if (compararPixels(poblacionMatrizIMGS[i][j], imgsIdivMod[j]) == true) {
+                    arraydeFitness[i] += 1;
+                }
             }
         }
-    }
-/*
-    cout<<"desordenado: "<<endl;
-    for (int p = 0; p < 16; p++) {
-        cout << arraydeFitness[p] << ",";
-    }*/
-    //cout << "\n\n\n" << endl;
 
-    while (verificarOrden(arraydeFitness) == false) {
+        while (verificarOrden(arraydeFitness) == false) {
 
-/*
-        for (int j = 0; j < cantidadGenes - 1; j++) {
-            if (fitnessArrayOrdenados[j] < fitnessArrayOrdenados[j + 1]) {// cambia "<" a ">" para cambiar la manera de ordenar
-                Temp = fitnessArrayOrdenados[j];
-                fitnessArrayOrdenados[j] = fitnessArrayOrdenados[j + 1];
-                fitnessArrayOrdenados[j + 1] = Temp;
+
+            for (int j = 0; j < 15; j++) {
+                if (arraydeFitness[j] < arraydeFitness[j + 1]) {
+
+                    //ordena el array de numeros
+                    int temp = arraydeFitness[j];
+                    arraydeFitness[j] = arraydeFitness[j + 1];
+                    arraydeFitness[j + 1] = temp;
+
+                    //re acomoda la poblacion
+                    Mat tempArrayIndivMenor[16];
+                    Mat tempArrayIndivMayor[16];
+                    for (int s = 0; s < 16; s++) {
+                        tempArrayIndivMenor[s] = poblacionMatrizIMGS[j][s];
+                        tempArrayIndivMayor[s] = poblacionMatrizIMGS[j + 1][s];
+                    }
+
+                    for (int g = 0; g < 16; g++) {
+                        poblacionMatrizIMGS[j][g] = tempArrayIndivMayor[g];
+                        poblacionMatrizIMGS[j + 1][g] = tempArrayIndivMenor[g];
+                    }
+                }
             }
-        }*/
+        }
 
-        for (int j = 0; j < 15; j++) {
-            if (arraydeFitness[j] < arraydeFitness[j + 1]) {
+        cout<<"Array de fitness ordenado, generacion "<<numGeneracion<<endl;
+        for (int p = 0; p < 16; p++) {
+            cout << arraydeFitness[p] << ",";
+        }
 
-                //ordena el array de numeros
-                int temp = arraydeFitness[j];
-                arraydeFitness[j] = arraydeFitness[j + 1];
-                arraydeFitness[j + 1] = temp;
+        cout<<"  ";
 
-                //re acomoda la poblacion
-                Mat tempArrayIndivMenor[16];
-                Mat tempArrayIndivMayor[16];
-                for (int s = 0; s < 16; s++) {
-                    tempArrayIndivMenor[s] = poblacionMatrizIMGS[j][s];
-                    tempArrayIndivMayor[s] = poblacionMatrizIMGS[j + 1][s];
+
+        if (arraydeFitness[0]==16){
+            cout<<"alcanzo el maximo fitness en generacion: "<<numGeneracion<<endl;
+            Mat imagen[16];
+            for (int i=0; i<16; i++){
+                imagen[i]=poblacionMatrizIMGS[0][i];
+            }
+            crearImagen(imagen, to_string(numGeneracion), to_string(16));
+
+            return 1;
+        }
+        //si el fitness actual es mayor que el anterior crea un nuevo .png de una imagen del mejor fitness
+        if (arraydeFitness[0]>anteriorFitness){
+
+            cout<<"Aumento de fitness "<<endl;
+            Mat imagen[16];
+            for (int i=0; i<16; i++){
+                imagen[i]=poblacionMatrizIMGS[0][i];
+            }
+            crearImagen(imagen, to_string(numGeneracion), "fit_"+to_string(anteriorFitness));
+            anteriorFitness++;
+
+
+        }
+
+
+
+        //reproducir
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //crear hijo
+        Mat individuoHijoIMGArrayTemporal[16];
+        Mat generacionMatrizIMGs[16][16];
+
+        cantidadMejoresIndividuos=3;
+        for (int i = 0; i < 16; i++) {  //16 veces
+
+            int pivote_1 = rand() % cantidadGenes;//pivote indice
+            int padre_1 = rand() % cantidadMejoresIndividuos;
+            int padre_2 = rand() % cantidadMejoresIndividuos;
+
+            //verifica que el padre 2 no sea igual que el 1
+            if (padre_2 != padre_1) {
+                for (int j = 0; j <= pivote_1; j++) {
+                    individuoHijoIMGArrayTemporal[j] = poblacionMatrizIMGS[padre_1][j];
+                }
+                for (int j = pivote_1 + 1; j < cantidadGenes; j++) {
+                    individuoHijoIMGArrayTemporal[j] = poblacionMatrizIMGS[padre_2][j];
                 }
 
                 for (int g = 0; g < 16; g++) {
-                    poblacionMatrizIMGS[j][g] = tempArrayIndivMayor[g];
-                    poblacionMatrizIMGS[j + 1][g] = tempArrayIndivMenor[g];
+                    //cout<<","<<individuoHijoArrayTemporal[g];
+                    generacionMatrizIMGs[i][g] = individuoHijoIMGArrayTemporal[g];
                 }
+
+            } else {
+                i--;
             }
-        }
-    }
-    cout<<"ordenado: "<<endl;
-    for (int p = 0; p < 16; p++) {
-        cout << arraydeFitness[p] << ",";
-    }
-
-    cout<<endl<<endl;
-
-
-    if (arraydeFitness[0]==16){
-        cout<<"alcanzo el maximo fitness en generacion: "<<numGeneracion<<endl;
-        Mat imagen[16];
-        for (int i=0; i<16; i++){
-            imagen[i]=poblacionMatrizIMGS[0][i];
-
-        }
-        crearImagen(imagen, to_string(numGeneracion), to_string(16));
-
-        return 1;
-    }
-
-    if (arraydeFitness[0]>anteriorFitness){
-        anteriorFitness++;
-        cout<<"Aumento de fitness "<<endl;
-        Mat imagen[16];
-        for (int i=0; i<16; i++){
-            imagen[i]=poblacionMatrizIMGS[0][i];
-
-        }
-        crearImagen(imagen, to_string(numGeneracion), "fit_"+to_string(anteriorFitness+1));
-
-
-    }
-
-
-
-    //reproducir
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //crear hijo
-    Mat individuoHijoIMGArrayTemporal[16];
-    Mat generacionMatrizIMGs[16][16];
-
-    cantidadMejoresIndividuos=2;
-    for (int i = 0; i < 16; i++) {  //16 veces
-
-        int pivote_1 = rand() % cantidadGenes;//pivote indice
-        //cout<<"\npiv: "<<pivote_1<<endl;
-        int padre_1 = rand() % cantidadMejoresIndividuos;
-        int padre_2 = rand() % cantidadMejoresIndividuos;
-        //verificar que el padre 2 no sea igual que el 1***************
-
-        if (padre_2 != padre_1) {
-            for (int j = 0; j <= pivote_1; j++) {
-
-                individuoHijoIMGArrayTemporal[j] = poblacionMatrizIMGS[padre_1][j];
-
-            }
-            for (int j = pivote_1 + 1; j < cantidadGenes; j++) {
-                individuoHijoIMGArrayTemporal[j] = poblacionMatrizIMGS[padre_2][j];
-
-
-            }
-
-            for (int g = 0; g < 16; g++) {
-                //cout<<","<<individuoHijoArrayTemporal[g];
-                generacionMatrizIMGs[i][g] = individuoHijoIMGArrayTemporal[g];
-            }
-
-        } else {
-            i--;
-        }
-
-    }//end for
-
-
-    //mutar
-    int probabilidadDeMutar=90;
-    for (int x = 0; x < 16; x++) {
-        int mutar = rand() % 100;
-
-        if (mutar <= probabilidadDeMutar) {
-
-            int individuoGen = rand() % 16;
-            int puntoGen = rand() % 16;
-
-            int individuoPoblacion=(rand() % 16-3)+2;
-            int puntoPoblacion=rand() % 16;
-
-            //Mat gen = poblacionMatrizIMGS[individuoPoblacion][puntoPoblacion]; //gen a copiar
-            //Mat genAremplazar =generacionMatrizIMGs[individuoGen][puntoGen];
-
-            Mat genACopiar=imgsIdivMod[rand() % 16];
-            //cout<<"gmm"<<endl;
-            while ( compararPixels(genACopiar , generacionMatrizIMGs[x][puntoGen]) == true  ) {
-
-                puntoGen = rand() % 16;
-
-                genACopiar=imgsIdivMod[rand() % 16];
-
-            }//end while
-            //cout<<"gmm 3"<<endl;
-
-            generacionMatrizIMGs[x][puntoGen]=genACopiar;
-            //generacionMatrizIMGs[individuoGen][puntoGen] = generacionMatrizIMGs[individuoPoblacion][puntoPoblacion];
-
-        }//end if
-    }//end for
-    numGeneracion++;
-
-    //prueba
-    for (int i = 0; i < 16; i++) {
-        for (int j = 0; j < 16; j++) {
-            poblacionMatrizIMGS[i][j] = generacionMatrizIMGs[i][j];
-        }
-    }
-/*
-    //prueba guardar img
-    Mat imagen[16];
-    for (int j=0; j<16; j++) {
-
-
-        for (int i = 0; i < 16; i++) {
-            imagen[i] = poblacionMatrizIMGS[j][i];
-        }
-        crearImagen(imagen,to_string(numGeneracion),to_string(j));
-    }*/
-
-
-}
-
-
-
-    //mutar
-        //para cada individuo de la poblacion crea un numero random <100. Si ese numero es <= la probabilidad de mutar entonces muta
-        //selecciona un punto al azar
-
-/*
-        for (int x = 0; x < 16; x++) {
-            int mutar = rand() % 100;
-
-            if (mutar <= probabilidadDeMutar) {
-
-                int individuo = rand() % 16;
-                int punto = rand() % 16;
-
-                int individuoPoblacion=rand() % 16;
-                int puntoPoblacion=rand() % 16;
-
-                int gen = rand()%16;
-
-
-
-                while ( gen == generacionMatriz[individuo][punto] ) {
-                    individuo = rand() % 16;
-                    punto = rand() % 16;
-                    gen = rand() % 16;
-                }//end while
-
-                generacionMatriz[individuo][punto] = gen;
-                generacionMatrizIMGS[individuo][punto]=buscarimagen(gen,poblacionMatriz, poblacionMatrizIMGS);
-
-                cout<<"gen Img: "<<gen<<endl<<endl<<endl;
-            }//end if
         }//end for
 
-*/
+
+        //mutar
+        int probabilidadDeMutar=90;
+        int cont=0;
+        while(cont<1) {
+            for (int x = 0; x < 16; x++) {
+                int mutar = rand() % 100;
+
+                if (mutar <= probabilidadDeMutar) {
+
+                    int puntoGen = rand() % 16;
+                    int puntoPoblacion = rand() % 16;
+
+                    Mat genACopiar = imgsIdivMod[rand() % 16]; //poblacionMatrizIMGS[rand() % 16][rand() % 16];//imgsIdivMod[rand() % 16];
+
+                    while (compararPixels(genACopiar, generacionMatrizIMGs[x][puntoGen]) == true) {
+
+                        puntoGen = rand() % 16;
+
+                        genACopiar = imgsIdivMod[rand() % 16]; //poblacionMatrizIMGS[rand() % 16][rand() %
+                                                                     // 16];            //imgsIdivMod[rand() % 16];
+                    }//end while
+
+                    generacionMatrizIMGs[x][puntoGen] = genACopiar;
+                }//end if
+            }//end for
+            cont+=1;
+        }//end while
+        numGeneracion++;
+
+        //prueba
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
+                poblacionMatrizIMGS[i][j] = generacionMatrizIMGs[i][j];
+            }
+        }
+
+      /*  //prueba guardar img
+        Mat imagen[16];
+        for (int j=0; j<16; j++) {
+
+
+            for (int i = 0; i < 16; i++) {
+                imagen[i] = poblacionMatrizIMGS[j][i];
+            }
+            crearImagen(imagen,to_string(numGeneracion),to_string(j));
+        }*/
+
+
+    }
 
 
 
 
-    return 0;
+
+        return 0;
 
 }//end reproducir
 
