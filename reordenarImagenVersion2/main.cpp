@@ -262,7 +262,7 @@ int reproducir(int cantidadGenes,
                 Mat imgsIdivMod[]){
 
 
-
+int anteriorFitness=0;
 while (true) {
     int arraydeFitness[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -274,12 +274,12 @@ while (true) {
             }
         }
     }
-
+/*
     cout<<"desordenado: "<<endl;
     for (int p = 0; p < 16; p++) {
         cout << arraydeFitness[p] << ",";
-    }
-    cout << "\n\n\n" << endl;
+    }*/
+    //cout << "\n\n\n" << endl;
 
     while (verificarOrden(arraydeFitness) == false) {
 
@@ -309,8 +309,8 @@ while (true) {
                 }
 
                 for (int g = 0; g < 16; g++) {
-                    poblacionMatrizIMGS[j][g] = tempArrayIndivMenor[g];
-                    poblacionMatrizIMGS[j + 1][g] = tempArrayIndivMayor[g];
+                    poblacionMatrizIMGS[j][g] = tempArrayIndivMayor[g];
+                    poblacionMatrizIMGS[j + 1][g] = tempArrayIndivMenor[g];
                 }
             }
         }
@@ -324,9 +324,30 @@ while (true) {
 
 
     if (arraydeFitness[0]==16){
-        cout<<"alcanzo el maximo fitness "<<endl;
+        cout<<"alcanzo el maximo fitness en generacion: "<<numGeneracion<<endl;
+        Mat imagen[16];
+        for (int i=0; i<16; i++){
+            imagen[i]=poblacionMatrizIMGS[0][i];
+
+        }
+        crearImagen(imagen, to_string(numGeneracion), to_string(16));
+
         return 1;
     }
+
+    if (arraydeFitness[0]>anteriorFitness){
+        anteriorFitness++;
+        cout<<"Aumento de fitness "<<endl;
+        Mat imagen[16];
+        for (int i=0; i<16; i++){
+            imagen[i]=poblacionMatrizIMGS[0][i];
+
+        }
+        crearImagen(imagen, to_string(numGeneracion), "fit_"+to_string(anteriorFitness+1));
+
+
+    }
+
 
 
     //reproducir
