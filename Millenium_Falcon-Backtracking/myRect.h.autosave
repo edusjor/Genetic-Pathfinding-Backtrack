@@ -1,0 +1,21 @@
+#ifndef MYRECT_H
+#define MYRECT_H
+
+#include <QGraphicsRectItem>
+#include "myBullet.h"
+
+class MyRect: public QGraphicsRectItem
+{
+public:
+    MyRect();
+    void keyPressEvent(QKeyEvent * event);
+    
+public slots:
+    void spawn();
+
+private:
+    int ammo = 0;
+    MyBullet *bulletArray[50];
+};
+
+#endif // MYRECT_H
